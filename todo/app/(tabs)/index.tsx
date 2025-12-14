@@ -106,8 +106,41 @@ export default function Index() {
             isEditing ? (
               <View style={styles.editContainer}>
                 <TextInput
+                  style={styles.editInput}
+                  onChangeText={setEditingText}
+                  autoFocus
+                  placeholder="Edit your todo..."
                   value={editingText}
+                  placeholderTextColor={colors.textMuted}
                 />
+                <View style={styles.editButtons}>
+                  <TouchableOpacity
+                  onPress={handleSaveEdit}
+                  activeOpacity={0.8}
+                  >
+                    <LinearGradient
+                    colors={colors.gradients.success}
+                    style={styles.editButton}
+                    >
+                      <Ionicons name="checkmark" size={16} color="#fff"/>
+                      <Text style={styles.editButtonText}>Save</Text>
+                    </LinearGradient>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                  onPress={handleCancelEdit}
+                  activeOpacity={0.8}
+                  >
+                    <LinearGradient
+                    colors={colors.gradients.muted}
+                    style={styles.editButton}
+                    >
+                      <Ionicons name="close" size={16} color="#fff"/>
+                      <Text style={styles.editButtonText}>Cancel</Text>
+                    </LinearGradient>
+                  </TouchableOpacity>
+
+                </View>
               </View>
             ) : (
               <View style={styles.todoTextContainer}>
@@ -120,7 +153,7 @@ export default function Index() {
                 </Text>
                 <View style={styles.todoActions}>
                   <TouchableOpacity
-                    onPress={() => { }}
+                    onPress={() => handleEditTodo(item)}
                     activeOpacity={0.8}
                   >
                     <LinearGradient

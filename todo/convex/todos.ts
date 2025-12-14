@@ -61,7 +61,7 @@ export const deleteTodos = mutation({
 })
 
 export const clearAllTodos = mutation({
-    handler:async (ctx,args)=>{
+    handler:async (ctx)=>{
         const todos = await ctx.db.query("todos").collect();
         for(const todo of todos){
             await ctx.db.delete(todo._id)
